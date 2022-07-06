@@ -1,5 +1,5 @@
-import 'package:expenses_flutter/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:expenses_flutter/components/transaction_user.dart';
 
 void main() => runApp(ExpensesApp());
 
@@ -15,21 +15,6 @@ class ExpensesApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final _transactions = [
-    Transaction(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 211.30,
-      date: DateTime.now(),
-    ),
-  ];
-
   MyHomePage({Key? key}) : super(key: key);
 
   @override
@@ -39,7 +24,6 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Despesas Pessoais'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
@@ -50,9 +34,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            child: const Text('Lista de Transações'),
-          ),
+          TransactionUser(),
         ],
       ),
     );
