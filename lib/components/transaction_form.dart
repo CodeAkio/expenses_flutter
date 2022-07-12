@@ -18,10 +18,13 @@ class TransactionForm extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(labelText: 'Título'),
             ),
             TextField(
               controller: valueController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
               decoration: InputDecoration(labelText: 'Valor (R\$)'),
             ),
             Row(
@@ -31,12 +34,7 @@ class TransactionForm extends StatelessWidget {
                   style: TextButton.styleFrom(
                     primary: Colors.purple,
                   ),
-                  onPressed: () {
-                    final title = titleController.text;
-                    final value = double.tryParse(valueController.text) ?? 0.0;
-
-                    onSubmit(title, value);
-                  },
+                  onPressed: _submitForm,
                   child: Text('Nova Transação'),
                 ),
               ],
@@ -45,5 +43,16 @@ class TransactionForm extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
+
+    if (title.isEmpty || value <= 0) {
+      return;
+    }
+
+    onSubmit(title, value);
   }
 }
