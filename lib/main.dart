@@ -17,9 +17,14 @@ class ExpensesApp extends StatelessWidget {
       home: MyHomePage(),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: Colors.purple,
-        secondary: Colors.amber,
-      )),
+            primary: Colors.purple,
+            secondary: Colors.amber,
+          ),
+          textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold))),
     );
   }
 }
