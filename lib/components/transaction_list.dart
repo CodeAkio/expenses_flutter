@@ -4,8 +4,10 @@ import 'package:expenses_flutter/models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
+  final void Function(String) onRemove;
 
-  const TransactionList({Key? key, required this.transactions})
+  const TransactionList(
+      {Key? key, required this.transactions, required this.onRemove})
       : super(key: key);
 
   @override
@@ -47,6 +49,10 @@ class TransactionList extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     subtitle: Text(DateFormat('d MMM y').format(tr.date)),
+                    trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        color: Theme.of(context).errorColor,
+                        onPressed: () => onRemove(tr.id)),
                   ),
                 );
               },
